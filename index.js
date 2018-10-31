@@ -5,7 +5,7 @@
  */
 
 //Dependencies
- const config = require('./config');
+ const config = require('./lib/config');
  const http = require('http');
  const https = require('https');
  const url = require('url');
@@ -13,6 +13,7 @@
  const fs = require('fs');
  const handlers = require('./lib/handlers');
  const _data = require('./lib/data');
+ const helpers = require('./lib/helpers');
 
 //The serer should respond to all requests with a string
 //Instantiate http server
@@ -62,7 +63,7 @@ let unifiedServer = (req,res) => {
   });
 
   req.on('end', () => {
-    buffer += decoder.end
+    buffer += decoder.end();
 
     //Choose de handler thi request should go to
     let chosenHandlers = typeof(router[trimmedPath]) !== 'undefined' ? router[trimmedPath] : handlers.notFound;
@@ -73,7 +74,7 @@ let unifiedServer = (req,res) => {
       'queryStringObject': queryStringObject,
       'method': method,
       'headers': headers,
-      'payload': buffer
+      'payload': helpers.parseJsonToObject(buffer)
     }
 
     //Route the request to the handler specify in th router
