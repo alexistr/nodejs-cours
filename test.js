@@ -47,13 +47,14 @@ let unifiedServer = (req,res) => {
 
   //Get the querystring as an object
   let queryStringObject = parsedUrl.query;
-  console.log(queryStringObject);
+
   //Get the http methode
   let method = req.method.toLowerCase();
 
   //Get the headers as an object
   let headers = req.headers;
-
+  console.log(`headers: ,${headers}`);
+  console.log(`querystring: ,${JSON.stringify(queryStringObject)}`);
   //Get the payload if
   let decoder = new StringDecoder('utf-8');
   let buffer = '';

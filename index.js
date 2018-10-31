@@ -11,12 +11,8 @@
  const url = require('url');
  const StringDecoder = require('string_decoder').StringDecoder;
  const fs = require('fs');
+ const handlers = require('./lib/handlers');
  const _data = require('./lib/data');
-
-_data.delete('test','newFile',(err) => {
-  
-  console.log(err);
-})
 
 //The serer should respond to all requests with a string
 //Instantiate http server
@@ -104,24 +100,8 @@ let unifiedServer = (req,res) => {
 
 };
 
-//Define handlers
-let handlers = {};
-
-handlers.sample = (data,callback) => {
-  //callback http status code and a payload
-  callback(406,{'name' : 'sample handlers'});
-};
-
-handlers.ping = (data,callback) => {
-callback(200);
-};
-
-handlers.notFound = (data,callback) => {
-callback(404);
-};
-
 //Define a request router
 let router = {
-  'sample' : handlers.sample,
+  'users' : handlers.users,
   'ping' : handlers.ping
 };
