@@ -104,5 +104,6 @@ let unifiedServer = (req,res) => {
 //Define a request router
 let router = {
   'users' : handlers.users,
-  'ping' : handlers.ping
+  'ping' : handlers.ping,
+  'tokens' : handlers.tokens
 };
