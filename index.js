@@ -15,7 +15,12 @@
  const _data = require('./lib/data');
  const helpers = require('./lib/helpers');
 
-//The serer should respond to all requests with a string
+// @TODO GET RID OF This
+helpers.sendTwilioSms('4158377530','Hello!',(err) => {
+  console.log("this was the error: ",err);
+});
+
+
 //Instantiate http server
 let httpServer = http.createServer((req,res)  => unifiedServer(req,res) );
 
@@ -75,7 +80,7 @@ let unifiedServer = (req,res) => {
       'method': method,
       'headers': headers,
       'payload': helpers.parseJsonToObject(buffer)
-    }
+    };
 
     //Route the request to the handler specify in th router
     chosenHandlers(data, (statusCode, payload) => {
@@ -87,7 +92,7 @@ let unifiedServer = (req,res) => {
       let payloadString = JSON.stringify(payload);
 
       //Return the response
-      res.setHeader('Content-Type','application/json')
+      res.setHeader('Content-Type','application/json');
       res.writeHead(statusCode);
       res.end(payloadString);
 
