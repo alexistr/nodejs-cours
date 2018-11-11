@@ -3,7 +3,7 @@
  * Premier fichier pour API
  *
  */
-
+"use strict";
 //Dependencies
 const server = require('./lib/server.js');
 const workers = require('./lib/workers.js');
