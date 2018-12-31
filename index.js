@@ -5,8 +5,9 @@
  */
 "use strict";
 //Dependencies
-const server = require('./lib/server.js');
-const workers = require('./lib/workers.js');
+const server = require('./lib/server');
+const workers = require('./lib/workers');
+const cli = require('./lib/cli');
 
 //Declare the app
 let app = {};
@@ -18,6 +19,11 @@ app.init = () => {
 
   //Start the workers
   workers.init();
+
+  // Start the CLI but make sure it starts last
+  setTimeout(() => {
+    cli.init();
+  },50);
 
 };
 
