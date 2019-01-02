@@ -4,6 +4,9 @@
 */
 "use strict";
 
+// Overide th eNODE_ENV variable
+process.env.NODE_ENV = 'testing';
+
 //Application logic for the test runner
 let _app = {};
 
@@ -11,6 +14,7 @@ let _app = {};
 _app.tests = {};
 // Dependencies
 _app.tests.unit = require('./unit');
+_app.tests.api = require('./api');
 
 // Count all the tests
 _app.countTests = () => {
@@ -98,7 +102,7 @@ _app.produceTestReport = (limit,successes,errors) => {
   console.log("");
   console.log("------------------END TEST REPORT-----------------");
 
-
+ process.exit(0);
 
 };
 
